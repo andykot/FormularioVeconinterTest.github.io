@@ -1,84 +1,63 @@
-<h1>Veconiter formulario TEST</h1>
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
-<!--  If necessary, please modify the charset parameter to specify the        -->
-<!--  character set of your HTML page.                                        -->
-<!--  ----------------------------------------------------------------------  -->
+<h1>Retorna chat</h1>
+<style type='text/css'>
+	.embeddedServiceHelpButton .helpButton .uiButton {
+		background-color: #005290;
+		font-family: "Arial", sans-serif;
+	}
+	.embeddedServiceHelpButton .helpButton .uiButton:focus {
+		outline: 1px solid #005290;
+	}
+</style>
 
-<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = true; //Or false
+		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
 
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <FORM> element to your page.             -->
-<!--  ----------------------------------------------------------------------  -->
+		//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
 
-<form action="https://sf-veconinter--test.sandbox.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
 
-<input type=hidden name="orgid" value="00D8I0000008hXc">
-<input type=hidden name="retURL" value="https://github.com/andykot/FormularioVeconinterTest.github.io.git">
+		// Settings for Chat
+		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+			// Returns a valid button ID.
+		//};
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
 
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
-<!--  these lines if you wish to test in debug mode.                          -->
-<!--  <input type="hidden" name="debug" value=1>                              -->
-<!--  <input type="hidden" name="debugEmail"                                  -->
-<!--  value="andy.kotzer@vurpix.com">                                         -->
-<!--  ----------------------------------------------------------------------  -->
+		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+		embedded_svc.settings.entryFeature = 'LiveAgent';
 
-<label for="name">Contact Name</label><input  id="name" maxlength="80" name="name" size="20" type="text" /><br>
+		embedded_svc.init(
+			'https://retornacl--retornaatc.sandbox.my.salesforce.com',
+			'https://retornacl--retornaatc.sandbox.my.site.com/',
+			gslbBaseURL,
+			'00D8C0000008gQo',
+			'Chat_ATC',
+			{
+				baseLiveAgentContentURL: 'https://c.la5-c1cs-ia5.salesforceliveagent.com/content',
+				deploymentId: '5728c000000gVob',
+				buttonId: '5738C000000003s',
+				baseLiveAgentURL: 'https://d.la5-c1cs-ia5.salesforceliveagent.com/chat',
+				eswLiveAgentDevName: 'Chat_ATC',
+				isOfflineSupportEnabled: true
+			}
+		);
+	};
 
-<label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
-
-<label for="subject">Subject</label><input  id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
-
-<label for="description">Description</label><textarea name="description"></textarea><br>
-
-Country:<select  id="00N8I000000UP9k" name="00N8I000000UP9k" title="Country"><option value="">--None--</option><option value="AG">AG - Antigua and Barbuda</option>
-<option value="AS">AS - American Samoa</option>
-<option value="AU">AU - Australia</option>
-<option value="BB">BB - Barbados</option>
-<option value="BE">BE - Belgium</option>
-<option value="BR">BR - Brazil</option>
-<option value="CH">CH - Switzerland</option>
-<option value="CL">CL - Chile</option>
-<option value="CO">CO - Colombia</option>
-<option value="CR">CR - Costa Rica</option>
-<option value="DO">DO - Dominican Republic</option>
-<option value="FJ">FJ - Fiji</option>
-<option value="FR">FR - France</option>
-<option value="GY">GY - Guyana</option>
-<option value="HN">HN - Honduras</option>
-<option value="HT">HT - Haiti</option>
-<option value="HU">HU - Hungary</option>
-<option value="LC">LC - Saint Lucia</option>
-<option value="MX">MX - Mexico</option>
-<option value="PR">PR - Puerto Rico</option>
-<option value="STL">STL - Saint Louis</option>
-<option value="SX">SX - Sint Maarten</option>
-<option value="TT">TT - Trinidad and Tobago</option>
-<option value="US">US - United States</option>
-<option value="VC">VC - Saint Vincent and the Grenadines</option>
-<option value="VE">VE - Venezuela</option>
-<option value="VU">VU - Vanuatu</option>
-<option value="WS">WS - Samoa</option>
-</select><br>
-
-<label for="recordType">Case Record Type</label><select  id="recordType" name="recordType"><option value="">--None--</option><option value="0128I000000Chwy">Consignee-Change of Consignee</option>
-<option value="0128I000000Chwz">Consignee-Claims</option>
-<option value="0128I000000Chx0">Consignee- Client Link</option>
-<option value="0128I000000Chx1">Consignee-Confirmation of Conditions</option>
-<option value="0128I000000Chx2">Consignee-Cost Estimated</option>
-<option value="0128I000000Chx3">Consignee-Data Update</option>
-<option value="0128I000000CiFM">Consignee-Emission And Exchange Of BL</option>
-<option value="0128I000000Chx4">Consignee-Exonerations</option>
-<option value="0128I000000Chx5">Consignee- Invoice Request</option>
-<option value="0128I000000Chx6">Consignee-Last Free Day</option>
-<option value="0128I000000Chx7">Consignee-Payment Receipt</option>
-<option value="0128I000000Chx8">Consignee-Payments Aplication</option>
-<option value="0128I000000Chx9">Consignee-Release</option>
-<option value="0128I000000ChxA">Consignee-Warranty Deposit</option>
-<option value="0128I000000ChxB">shipping company cases</option>
-</select><br>
-
-<input type="submit" name="submit">
-
-</form>
+	if (!window.embedded_svc) {
+		var s = document.createElement('script');
+		s.setAttribute('src', 'https://retornacl--retornaatc.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.onload = function() {
+			initESW(null);
+		};
+		document.body.appendChild(s);
+	} else {
+		initESW('https://service.force.com');
+	}
+</script>
